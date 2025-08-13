@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>I Love You</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+    }
+
+    h1 {
+      font-size: 5em;
+      color: #fff;
+      text-shadow: 
+        0 0 5px #ff0080, 
+        0 0 10px #ff0080, 
+        0 0 20px #ff0080, 
+        0 0 40px #ff0080,
+        0 0 60px #ff0080;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 5px #ff0080, 0 0 10px #ff0080, 0 0 20px #ff0080, 0 0 40px #ff0080;
+      }
+      100% {
+        text-shadow: 0 0 10px #ff4da6, 0 0 20px #ff4da6, 0 0 30px #ff4da6, 0 0 60px #ff4da6;
+      }
+    }
+
+    .hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff4da6;
+      font-size: 2em;
+      animation: float 8s infinite ease-in;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>I ❤ You</h1>
+  <div class="hearts"></div>
+
+  <script>
+    // Create floating hearts
+    const heartsContainer = document.querySelector('.hearts');
+    const createHeart = () => {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (Math.random() * 2 + 1) + 'em';
+      heart.style.animationDuration = (Math.random() * 5 + 3) + 's';
+      heart.innerHTML = '❤';
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    };
+
+    setInterval(createHeart, 400);
+  </script>
+</body>
+</html>
